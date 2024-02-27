@@ -67,8 +67,25 @@ function render(callback) {
   emitter.on('render', callback);
 }
 
+const timezone = {
+  pacific: 'America/Los_Angeles',
+  mountain: 'America/Denver',
+  central: 'America/Chicago',
+  eastern: 'America/New_York',
+  japan: 'Asia/Tokyo',
+};
+
+function getTimezone(date, timezoneName) {
+  return date.toLocaleTimeString('en-US', {
+    timeZone: timezoneName,
+  });
+}
+
 function getCurrentTime(offset = 0) {
-  const currentTime = new Date(Date.now() + offset);
+  // const currentTime = new Date(Date.now() + offset);
+  const currentTime = new Date(
+    getTimezone(new Date(), timezone.japan) + offset,
+  );
   let minute = currentTime.getMinutes();
   let hour = currentTime.getHours();
   const ampm = hour >= 0 && hour <= 11 ? 'AM' : 'PM';

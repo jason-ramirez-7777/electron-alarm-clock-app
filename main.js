@@ -11,7 +11,7 @@ if (!app.requestSingleInstanceLock()) {
 function createWindow() {
   const state = windowStateKeeper({
     defaultWidth: 440,
-    defaultHeight: 590,
+    defaultHeight: 1080,
   });
 
   mainWindow = new BrowserWindow({
